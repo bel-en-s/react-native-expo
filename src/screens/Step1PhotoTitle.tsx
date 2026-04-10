@@ -7,12 +7,15 @@ import { ScreenContainer } from '../components/ScreenContainer';
 import { TextField } from '../components/TextField';
 import { Button } from '../components/Button';
 import { useFormStore } from '../store/useFormStore';
-import { colors, radius, spacing } from '../theme/theme';
+import { radius, spacing } from '../theme/theme';
+import { useTheme } from '../context/ThemeContext';
 import { TITLE_MAX, validateStep1 } from '../validation/formValidation';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Step1'>;
 
 export function Step1PhotoTitle({ navigation }: Props) {
+  const { theme: colors } = useTheme();
+  const styles = React.useMemo(() => getStyles(colors), [colors]);
   const draft = useFormStore((s) => s.draft);
   const setField = useFormStore((s) => s.setField);
   const [showErrors, setShowErrors] = useState(false);
@@ -92,7 +95,7 @@ export function Step1PhotoTitle({ navigation }: Props) {
   );
 }
 
-const styles = StyleSheet.create({
+const getStyles = (colors: any) => StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: '700',

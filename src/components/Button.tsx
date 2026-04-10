@@ -6,7 +6,8 @@ import {
   Text,
   ViewStyle,
 } from 'react-native';
-import { colors, radius, spacing } from '../theme/theme';
+import { radius, spacing } from '../theme/theme';
+import { useTheme } from '../context/ThemeContext';
 
 type Variant = 'primary' | 'secondary' | 'ghost';
 
@@ -27,6 +28,8 @@ export function Button({
   loading,
   style,
 }: Props) {
+  const { theme: colors } = useTheme();
+  const styles = React.useMemo(() => getStyles(colors), [colors]);
   const isDisabled = disabled || loading;
   return (
     <Pressable
@@ -56,7 +59,7 @@ export function Button({
   );
 }
 
-const styles = StyleSheet.create({
+const getStyles = (colors: any) => StyleSheet.create({
   base: {
     paddingVertical: spacing.md,
     paddingHorizontal: spacing.lg,

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors, radius, spacing } from '../theme/theme';
+import { radius, spacing } from '../theme/theme';
+import { useTheme } from '../context/ThemeContext';
 
 type Props<T extends string> = {
   label: string;
@@ -17,6 +18,8 @@ export function Selector<T extends string>({
   onChange,
   error,
 }: Props<T>) {
+  const { theme: colors } = useTheme();
+  const styles = React.useMemo(() => getStyles(colors), [colors]);
   return (
     <View style={styles.wrapper}>
       <Text style={styles.label}>{label}</Text>
@@ -43,7 +46,7 @@ export function Selector<T extends string>({
   );
 }
 
-const styles = StyleSheet.create({
+const getStyles = (colors: any) => StyleSheet.create({
   wrapper: {
     marginBottom: spacing.md,
   },

@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { colors, spacing } from '../theme/theme';
+import { spacing } from '../theme/theme';
+import { useTheme } from '../context/ThemeContext';
 
 type Props = {
   current: number; // 1-based
@@ -9,6 +10,8 @@ type Props = {
 };
 
 export function StepIndicator({ current, total, labels }: Props) {
+  const { theme: colors } = useTheme();
+  const styles = React.useMemo(() => getStyles(colors), [colors]);
   return (
     <View style={styles.wrapper}>
       <View style={styles.row}>
@@ -52,7 +55,7 @@ export function StepIndicator({ current, total, labels }: Props) {
   );
 }
 
-const styles = StyleSheet.create({
+const getStyles = (colors: any) => StyleSheet.create({
   wrapper: {
     paddingVertical: spacing.md,
   },

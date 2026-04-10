@@ -6,7 +6,8 @@ import {
   TextInputProps,
   View,
 } from 'react-native';
-import { colors, radius, spacing } from '../theme/theme';
+import { radius, spacing } from '../theme/theme';
+import { useTheme } from '../context/ThemeContext';
 
 type Props = TextInputProps & {
   label: string;
@@ -16,6 +17,8 @@ type Props = TextInputProps & {
 };
 
 export function TextField({ label, error, helper, counter, style, ...rest }: Props) {
+  const { theme: colors } = useTheme();
+  const styles = React.useMemo(() => getStyles(colors), [colors]);
   return (
     <View style={styles.wrapper}>
       <View style={styles.labelRow}>
@@ -40,7 +43,7 @@ export function TextField({ label, error, helper, counter, style, ...rest }: Pro
   );
 }
 
-const styles = StyleSheet.create({
+const getStyles = (colors: any) => StyleSheet.create({
   wrapper: {
     marginBottom: spacing.md,
   },

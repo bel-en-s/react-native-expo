@@ -11,11 +11,14 @@ import {
   DESCRIPTION_MAX,
   validateStep3,
 } from '../validation/formValidation';
-import { colors, spacing } from '../theme/theme';
+import { spacing } from '../theme/theme';
+import { useTheme } from '../context/ThemeContext';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Step3'>;
 
 export function Step3PriceDescription({ navigation }: Props) {
+  const { theme: colors } = useTheme();
+  const styles = React.useMemo(() => getStyles(colors), [colors]);
   const draft = useFormStore((s) => s.draft);
   const setField = useFormStore((s) => s.setField);
   const [showErrors, setShowErrors] = useState(false);
@@ -79,7 +82,7 @@ export function Step3PriceDescription({ navigation }: Props) {
   );
 }
 
-const styles = StyleSheet.create({
+const getStyles = (colors: any) => StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: '700',

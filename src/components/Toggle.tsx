@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Switch, Text, View } from 'react-native';
-import { colors, spacing } from '../theme/theme';
+import { spacing } from '../theme/theme';
+import { useTheme } from '../context/ThemeContext';
 
 type Props = {
   label: string;
@@ -10,6 +11,8 @@ type Props = {
 };
 
 export function Toggle({ label, description, value, onChange }: Props) {
+  const { theme: colors } = useTheme();
+  const styles = React.useMemo(() => getStyles(colors), [colors]);
   return (
     <View style={styles.wrapper}>
       <View style={styles.textWrap}>
@@ -26,7 +29,7 @@ export function Toggle({ label, description, value, onChange }: Props) {
   );
 }
 
-const styles = StyleSheet.create({
+const getStyles = (colors: any) => StyleSheet.create({
   wrapper: {
     flexDirection: 'row',
     alignItems: 'center',

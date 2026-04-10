@@ -14,7 +14,8 @@ import { RootStackParamList } from '../navigation/types';
 import { ScreenContainer } from '../components/ScreenContainer';
 import { Button } from '../components/Button';
 import { useFormStore } from '../store/useFormStore';
-import { colors, radius, spacing } from '../theme/theme';
+import { radius, spacing } from '../theme/theme';
+import { useTheme } from '../context/ThemeContext';
 import { validateAll } from '../validation/formValidation';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Step4'>;
@@ -30,6 +31,8 @@ function formatPrice(value: string): string {
 }
 
 export function Step4Preview({ navigation }: Props) {
+  const { theme: colors } = useTheme();
+  const styles = React.useMemo(() => getStyles(colors), [colors]);
   const draft = useFormStore((s) => s.draft);
   const reset = useFormStore((s) => s.reset);
   const [publishing, setPublishing] = useState(false);
@@ -174,6 +177,8 @@ export function Step4Preview({ navigation }: Props) {
 }
 
 function Tag({ text }: { text: string }) {
+  const { theme: colors } = useTheme();
+  const styles = React.useMemo(() => getStyles(colors), [colors]);
   return (
     <View style={styles.tag}>
       <Text style={styles.tagText}>{text}</Text>
@@ -181,7 +186,7 @@ function Tag({ text }: { text: string }) {
   );
 }
 
-const styles = StyleSheet.create({
+const getStyles = (colors: any) => StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: '700',

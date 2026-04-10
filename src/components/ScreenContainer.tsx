@@ -8,7 +8,8 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StepIndicator } from './StepIndicator';
-import { colors, spacing } from '../theme/theme';
+import { spacing } from '../theme/theme';
+import { useTheme } from '../context/ThemeContext';
 
 type Props = {
   children: React.ReactNode;
@@ -19,6 +20,8 @@ type Props = {
 const STEP_LABELS = ['Foto y título', 'Detalles', 'Precio', 'Confirmación'];
 
 export function ScreenContainer({ children, currentStep, footer }: Props) {
+  const { theme: colors } = useTheme();
+  const styles = React.useMemo(() => getStyles(colors), [colors]);
   return (
     <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
       <KeyboardAvoidingView
@@ -40,7 +43,7 @@ export function ScreenContainer({ children, currentStep, footer }: Props) {
   );
 }
 
-const styles = StyleSheet.create({
+const getStyles = (colors: any) => StyleSheet.create({
   safe: {
     flex: 1,
     backgroundColor: colors.background,
