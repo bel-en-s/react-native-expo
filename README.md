@@ -15,7 +15,7 @@ Challenge técnico React Native + Expo. Flujo de publicación de una prenda en 4
 ### Requisitos previos
 - **Node.js 18+** y **npm**
 - Alguna de estas opciones para ver la app:
-  - **Expo Go** en tu celular (iOS App Store / Play Store) — recomendado
+  - **Expo Go** en el celular (iOS App Store / Play Store) — recomendado
   - **Simulador de iOS** (requiere Xcode instalado en Mac)
   - **Emulador de Android** (Android Studio)
 
@@ -28,9 +28,10 @@ npx expo start
 
 ### Cómo ver la app
 
-Cuando Metro termine de arrancar vas a ver un QR y un menú de atajos. Elegí una opción:
+En terminal ver el qr. Escanearlo con el celular. Apretar en terminal R si se realizan cambios para refrescar
 
-**Opción A — Celular con Expo Go (la más simple)**
+
+**Opción A — Celular con Expo Go **
 1. Asegurate de que tu celu y tu compu estén en la **misma red WiFi**.
 2. Si el QR apunta a `127.0.0.1`, matá el proceso (Ctrl+C) y reiniciá con:
    ```bash
@@ -129,4 +130,8 @@ Jest está configurado con el preset `jest-expo` (ver `package.json`). Hay 10 te
 
 ## Qué falta (si quedase algo)
 
-Completé todos los requerimientos funcionales y técnicos del enunciado. Del bonus quedaron hechos: persistencia en AsyncStorage y tests unitarios. Faltan las animaciones de Reanimated y el dark mode — documentados arriba.
+Completé todos los requerimientos funcionales y técnicos del enunciado. Del bonus quedaron hechos: persistencia en AsyncStorage, dark mode y tests unitarios. Faltan las animaciones de Reanimated, que me parecieron lo menos prioritario ya que el challenge especifica que lo más importante es la funcionalidad.
+
+-Me quedó pendiente hacer que siempre este disponible el toggle de theme, ahora solo está en la primera pantalla.
+-También me gustaría que el teclado tenga un listo, para que se cierre y continuar con el siguiente campo. 
+- Agregar un mínimo de caracteres en descripción.
